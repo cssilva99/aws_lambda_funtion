@@ -6,6 +6,7 @@
 resource "aws_s3_bucket_object" "function" {
   bucket = "function"
   key    = "main.py.zip"
+  region = "us-west-2"
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
