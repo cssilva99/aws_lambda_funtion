@@ -20,7 +20,7 @@ EOF
 
 resource "aws_lambda_function" "this" {
   s3_bucket = "myportfoliodescription"
-  s3_key    = aws_s3_bucket_object.function.key
+  s3_key    = "myportfoliodescription.key
   function_name = "lambda_function_name"
   role          = "${aws_iam_role.iam_for_lambda.arn}"
   handler       = "exports.test"
