@@ -1,14 +1,3 @@
-# ----------------------------------------------------------------------------------------------------------------------
-# CREATE A S3 BUCKET AND UPLOAD THE ARCHIVE AS AN OBJECT
-# ----------------------------------------------------------------------------------------------------------------------
-
-
-resource "aws_s3_bucket_object" "function" {
-  bucket = "function"
-  key    = "main.py.zip"
-  region = "us-west-2"
-}
-
 resource "aws_iam_role" "iam_for_lambda" {
   name = "iam_for_lambda"
 
@@ -31,7 +20,6 @@ EOF
 
 resource "aws_lambda_function" "this" {
   s3_bucket = "myportfoliodescription"
-  s3_key    = aws_s3_bucket_object.function.key
   function_name = "lambda_function_name"
   role          = "${aws_iam_role.iam_for_lambda.arn}"
   handler       = "exports.test"
