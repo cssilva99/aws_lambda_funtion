@@ -2,16 +2,9 @@
 # CREATE A S3 BUCKET AND UPLOAD THE ARCHIVE AS AN OBJECT
 # ----------------------------------------------------------------------------------------------------------------------
 
-module "s3_bucket" {
-  source  = "mineiros-io/s3-bucket/aws"
-  version = "2.51.0"
-
-  bucket_prefix = "mineiros-s3-example-"
-  force_destroy = true
-}
 
 resource "aws_s3_bucket_object" "function" {
-  bucket = module.s3_bucket.id
+  bucket = "myterraformprojectwebsite2023"
   key    = "main.py.zip"
   source = data.archive_file.lambda.output_path
 }
