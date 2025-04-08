@@ -4,7 +4,7 @@
 
 
 resource "aws_s3_bucket_object" "function" {
-  bucket = "myterraformprojectwebsite2023"
+  bucket = "function"
   key    = "main.py.zip"
 }
 
@@ -29,8 +29,8 @@ EOF
 }
 
 resource "aws_lambda_function" "this" {
-  s3_bucket = aws_s3_bucket_object.bucket
-  s3_key    = aws_s3_bucket_object.function.key
+  s3_bucket = aws_s3_bucket_object.this
+  s3_key    = aws_s3_bucket_object.this.key
   function_name = "lambda_function_name"
   role          = "${aws_iam_role.iam_for_lambda.arn}"
   handler       = "exports.test"
