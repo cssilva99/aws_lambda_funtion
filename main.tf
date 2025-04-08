@@ -4,7 +4,7 @@
 
 module "s3_bucket" {
   source  = "mineiros-io/s3-bucket/aws"
-  version = "0.6.0"
+  version = "2.51.0"
 
   bucket_prefix = "mineiros-s3-example-"
   force_destroy = true
