@@ -6,7 +6,6 @@
 resource "aws_s3_bucket_object" "function" {
   bucket = "myterraformprojectwebsite2023"
   key    = "main.py.zip"
-  source = data.archive_file.lambda.output_path
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
