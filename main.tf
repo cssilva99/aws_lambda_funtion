@@ -1,5 +1,34 @@
-resource "aws_iam_role" "iam_for_lambda" {
-  name = "iam_for_lambda"
+mbda.tf
+# Simple AWS Lambda Terraform Example
+# requires 'index.js' in the same directory
+# to test: run `terraform plan`
+# to deploy: run `terraform apply`
+
+variable "aws_region" {
+  default = "us-west-2"
+}
+
+provider "aws" {
+  region          = "${var.aws_region}"
+}
+
+data "archive_file" "lambda_zip" {
+    type          = "zip"
+    source_file   = "index.js"
+    output_path   = "lambda_function.zip"
+}
+
+resource "aws_lambda_function" "test_lambda" {
+  filename         = "lambda_function.zip"
+  function_name    = "test_lambda"
+  role             = "${aws_iam_role.iam_for_lambda_tf.arn}"
+  handler          = "index.handler"
+  source_code_hash = "${data.archive_file.lambda_zip.output_base64sha256}"
+  runtime          = "python3.12"
+}
+
+resource "aws_iam_role" "iam_for_lambda_tf" {
+  name = "iam_for_lambda_tf"
 
   assume_role_policy = <<EOF
 {
@@ -16,16 +45,4 @@ resource "aws_iam_role" "iam_for_lambda" {
   ]
 }
 EOF
-}
-
-module "lambda_function" {
-  source = "C:\\Users\\aws06\\Downloads\\sample"
-
-  function_name = "lambdatest"
-  handler       = "index.lambda_handler"
-  runtime       = "python3.12"
-  publish       = true
-
-  source_path = "C:\\Users\\aws06\\Downloads\\sample"
-  hash_extra  = "yo1"
 }
