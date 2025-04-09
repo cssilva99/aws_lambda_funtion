@@ -14,7 +14,7 @@ provider "aws" {
 
 data "archive_file" "lambda_zip" {
   type = "zip"
-  source_file = "C:/Users/aws06/Desktop/otherrepo/intro/fichapratica_00/exercicio_008.zip"
+  source_file = "exercicio_008.zip"
   output_path = "lambda_function.zip"
 }
 
