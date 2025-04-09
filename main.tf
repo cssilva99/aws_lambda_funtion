@@ -1,4 +1,4 @@
-mbda.tf
+
 # Simple AWS Lambda Terraform Example
 # requires 'index.js' in the same directory
 # to test: run `terraform plan`
