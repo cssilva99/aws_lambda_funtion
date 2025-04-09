@@ -13,9 +13,9 @@ provider "aws" {
 }
 
 data "archive_file" "lambda_zip" {
-    type          = "zip"
-    source_file   = "index.js"
-    output_path   = "lambda_function.zip"
+  type = "zip"
+  source_file = "C:\\Users\\aws06\\Downloads\\sample.zip"
+  output_path = "lambda_function.zip"
 }
 
 resource "aws_lambda_function" "test_lambda" {
